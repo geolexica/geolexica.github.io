@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Geolexica</title>
+
+    <style>
+      body {
+        background: #fff;
+        font-family: 'Trebuchet MS', sans-serif;
+      }
+      .site-selector {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10rem;
+        text-align: center;
+      }
+      .site-selector li {
+        display: flex;
+        flex-direction: column;
+        margin: 5rem 2.5rem;
+      }
+      .site-selector .img-wrapper {
+        width: 20rem;
+        height: 20rem;
+        position: relative;
+      }
+      .img-wrapper img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: auto;
+      }
+      .site-selector li:hover .img-wrapper {
+        background: rgba(0,0,0,0.05);
+      }
+      .site-selector span {
+        background: black;
+        color: white;
+        display: inline-block;
+        font-weight: bold;
+        padding: .7em;
+        white-space: nowrap;
+      }
+      .site-selector a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul class="site-selector">
+      <li>
+        <a href="https://isotc211.geolexica.org/">
+          <div class="img-wrapper">
+            <img
+              src="https://isotc211.geolexica.org/assets/logo-iso-noninverted.svg"
+              alt="">
+          </div>
+          <div class="caption">
+            <span>ISO/TC 211</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://osgeo.geolexica.org/">
+          <div class="img-wrapper">
+            <img
+              src="https://osgeo.geolexica.org/assets/osgeo-emblem-cmyk.svg"
+              style="transform: scale(0.75);"
+              alt="">
+          </div>
+          <div class="caption">
+            <span>OSGeo</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </body>
+</html>
