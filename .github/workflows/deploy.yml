@@ -1,15 +1,20 @@
-name: deploy-master
+name: deploy
 
 on:
   push:
-    branches: master
+    branches:
+      - master
+      - staging
+  repository_dispatch:
 
 jobs:
   build:
     name: Build site
     runs-on: ubuntu-latest
     environment:
-      name: production
+      name: ${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}
+      url: ${{ github.ref == 'refs/heads/master' && 'https://www.geolexica.org' || 'https://www-staging.geolexica.org' }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -29,5 +34,4 @@ jobs:
           aws s3 sync _site s3://$S3_BUCKET_NAME --region=$AWS_REGION --delete --no-progress --exclude "*" --include "*.html" --content-type "text/html; charset=utf-8"
           aws s3 sync _site s3://$S3_BUCKET_NAME --region=$AWS_REGION --delete --no-progress --exclude "*" --include "*.json" --content-type "text/json; charset=utf-8"
           aws s3 sync _site s3://$S3_BUCKET_NAME --region=$AWS_REGION --delete --no-progress --exclude "*.html,*.json" --include "*"
-          aws configure set preview.cloudfront true
           aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
