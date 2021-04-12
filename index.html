@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Geolexica</title>
+    <title>Geolexica: Open geospatial terminology</title>
 
     <style>
       body {
@@ -18,7 +18,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 10rem;
+        padding: 2rem;
         text-align: center;
       }
       .site-selector li {
@@ -27,17 +27,12 @@
         margin: 5rem 2.5rem;
       }
       .site-selector .img-wrapper {
-        width: 20rem;
-        height: 20rem;
         position: relative;
+        text-align: center;
       }
       .img-wrapper img {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        margin: auto;
+        width: 15rem;
+        height: 15rem;
       }
       .site-selector li:hover .img-wrapper {
         background: rgba(0,0,0,0.05);
@@ -58,6 +53,14 @@
       .site-selector a {
         text-decoration: none;
       }
+      .about {
+        text-align: center;
+        display: block;
+      }
+      .about p {
+        width: 45rem;
+        display: inline-block;
+      }
     </style>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -71,6 +74,9 @@
   </head>
 
   <body>
+    <div class="about">
+      <p>Geolexica: Open geospatial terminology<p>
+    </div>
     <ul class="site-selector">
       <li>
         <a href="https://isotc211.geolexica.org/">
@@ -80,7 +86,7 @@
               alt="">
           </div>
           <div class="caption">
-            <span>ISO/TC 211</span>
+            <span>ISO/TC 211 Multi-Lingual Glossary of Terms (MLGT)</span>
           </div>
         </a>
       </li>
@@ -93,16 +99,20 @@
               alt="">
           </div>
           <div class="caption">
-            <span>OSGeo</span>
+            <span>OSGeo Glossary</span>
           </div>
         </a>
       </li>
     </ul>
 
+    <div class="about">
+    <p>
 		The name "`geolexica`" is a combination of the Greek prefix "`geo-`"
 		(of and pertaining to the Earth) and the suffix "`lexica`"
 		derived from the Greek "`lexiko`", counterpart of the English
 		"`lexicon`" (vocabulary).
+    </p>
+    </div>
 
   </body>
 </html>
