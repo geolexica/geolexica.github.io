@@ -3,7 +3,7 @@ name: deploy
 on:
   push:
     branches:
-      - master
+      - main
       - staging
   repository_dispatch:
 
@@ -12,8 +12,8 @@ jobs:
     name: Build site
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}
-      url: ${{ github.ref == 'refs/heads/master' && 'https://www.geolexica.org' || 'https://www-staging.geolexica.org' }}
+      name: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
+      url: ${{ github.ref == 'refs/heads/main' && 'https://www.geolexica.org' || 'https://www-staging.geolexica.org' }}
 
     steps:
       - uses: actions/checkout@v2
