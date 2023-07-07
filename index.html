@@ -18,17 +18,21 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        padding: 2rem;
+        padding: 0;
+        gap: 2.5rem;
         text-align: center;
+
+        /*
+        Bottom margin serves to prevent footer about text
+        from seeming as if it was part of the last site in list
+        on narrow viewports.
+        */
+        margin: 0 0 5rem 0;
       }
       .site-selector li {
         display: flex;
         flex-direction: column;
-        margin: 5rem 2.5rem;
-      }
-      .site-selector .img-wrapper {
-        position: relative;
-        text-align: center;
+        width: 15rem;
       }
       .img-wrapper img {
         width: 15rem;
@@ -55,10 +59,21 @@
       .about {
         text-align: center;
         display: block;
+        margin: 2.5rem;
       }
-      .about p {
-        width: 45rem;
-        display: inline-block;
+
+      @media screen and (min-width: 800px) {
+        body {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: space-between;
+        }
+        .about {
+          max-width: 60vw;
+          margin: 0 auto;
+        }
       }
     </style>
 
