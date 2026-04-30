@@ -6,16 +6,14 @@ on:
     - main
   pull_request:
   repository_dispatch:
+    types: [deploy]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -27,24 +25,51 @@ jobs:
       name: production
       url: https://www.geolexica.org
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout Glossarist Vocabulary Browser
+        uses: actions/checkout@v4
+        with:
+          repository: glossarist/vocabulary-browser
+          ref: main
+          path: vocabulary-browser
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: vocabulary-browser/package-lock.json
 
-      - name: Build site
-        run: |
-          mkdir -p _site
-          cp index.html _site
+      - name: Install dependencies
+        run: npm ci
+        working-directory: vocabulary-browser
+
+      - name: Fetch datasets
+        run: npm run fetch-datasets
+        working-directory: vocabulary-browser
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build GCR packages
+        run: npm run build-gcr:all
+        working-directory: vocabulary-browser
+
+      - name: Generate data
+        run: npm run generate-data && npm run generate-data
+        working-directory: vocabulary-browser
+
+      - name: Build edges
+        run: node scripts/build-edges.js
+        working-directory: vocabulary-browser
+
+      - name: Build SPA
+        run: npm run build
+        working-directory: vocabulary-browser
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: vocabulary-browser/dist
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
@@ -55,4 +80,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
