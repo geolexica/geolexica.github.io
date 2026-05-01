@@ -2,8 +2,7 @@ name: build_deploy
 
 on:
   push:
-    branches:
-    - main
+    branches: [main]
   pull_request:
   repository_dispatch:
     types: [deploy]
@@ -25,7 +24,10 @@ jobs:
       name: production
       url: https://www.geolexica.org
     steps:
-      - name: Checkout Glossarist Vocabulary Browser
+      - name: Checkout this repo (for datasets.yml)
+        uses: actions/checkout@v4
+
+      - name: Checkout vocabulary-browser
         uses: actions/checkout@v4
         with:
           repository: glossarist/vocabulary-browser
@@ -43,15 +45,14 @@ jobs:
         run: npm ci
         working-directory: vocabulary-browser
 
-      - name: Fetch datasets
+      - name: Copy datasets.yml
+        run: cp datasets.yml vocabulary-browser/datasets.yml
+
+      - name: Fetch datasets (download GCR packages)
         run: npm run fetch-datasets
         working-directory: vocabulary-browser
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build GCR packages
-        run: npm run build-gcr:all
-        working-directory: vocabulary-browser
 
       - name: Generate data
         run: npm run generate-data && npm run generate-data
