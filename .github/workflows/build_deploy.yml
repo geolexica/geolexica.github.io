@@ -48,6 +48,9 @@ jobs:
       - name: Copy datasets.yml
         run: cp datasets.yml vocabulary-browser/datasets.yml
 
+      - name: Copy site-config.yml
+        run: cp site-config.yml vocabulary-browser/site-config.yml
+
       - name: Fetch datasets (download GCR packages)
         run: npm run fetch-datasets
         working-directory: vocabulary-browser
