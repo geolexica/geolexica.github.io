@@ -6,19 +6,6 @@ subtitle: Terminology Register
 description: A terminology register for ISO and IEC standards.
 
 datasets:
-  - id: iev
-    uri: "urn:iec:std:iec:60050:*"
-    uriAliases:
-      - "https://glossarist.org/iev/*"
-    gcrPackage: https://github.com/glossarist/glossarist-data-iev/releases/latest/download/iev.gcr
-    sourceRepo: https://github.com/glossarist/glossarist-data-iev
-    title: "IEC Electropedia (IEV)"
-    description: "International Electrotechnical Vocabulary"
-    owner: IEC TC 1
-    color: "#3366ff"
-    tags: [electrotechnical, iec, multilingual]
-    languageOrder: [eng, fra, deu, spa, kor, jpn, zho, nld, pol, por, srp, swe, ara]
-
   - id: isotc211
     uri: "https://glossarist.org/isotc211/*"
     gcrPackage: https://github.com/geolexica/isotc211-glossary/releases/latest/download/isotc211.gcr
