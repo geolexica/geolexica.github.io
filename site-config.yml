@@ -55,6 +55,10 @@ branding:
       weights: [400, 500, 700]
   ownerName: Geolexica
   ownerUrl: https://www.geolexica.org
+  hostedBy:
+    name: Enosema Foundation
+    url: https://www.enosema.org
+    logo: https://www.enosema.org/logos/logo-text-green.svg
 
 features:
   news: false
