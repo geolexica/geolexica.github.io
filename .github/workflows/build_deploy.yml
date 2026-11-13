@@ -31,10 +31,7 @@ jobs:
           node-version: 24
 
       - name: Install concept-browser
-        # 0.4.17 matches the version the other Geolexica sites deploy with;
-        # the 0.7.x line requires site-config keys (uriBase) this dataset set
-        # does not carry yet.
-        run: npm install -g @glossarist/concept-browser@0.4.17
+        run: npm install -g @glossarist/concept-browser@0.7.140
 
       - name: Build site
         run: npx concept-browser build
