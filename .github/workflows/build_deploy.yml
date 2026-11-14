@@ -31,7 +31,7 @@ jobs:
           node-version: 24
 
       - name: Install concept-browser
-        run: npm install -g @glossarist/concept-browser@0.7.140
+        run: npm install -g @glossarist/concept-browser@0.7.142
 
       - name: Build site
         run: npx concept-browser build
