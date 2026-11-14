@@ -5,6 +5,8 @@ title: Geolexica
 subtitle: Terminology Register
 description: A terminology register for ISO and IEC standards.
 
+copyright: "© 2026 Enosema Foundation. Datasets © their respective owners and used with permission."
+
 datasets:
   - id: isotc211
     uri: "https://glossarist.org/isotc211/*"
@@ -56,6 +58,7 @@ branding:
   ownerName: Geolexica
   ownerUrl: https://www.geolexica.org
   hostedBy:
+    prefix: "A service of"
     name: Enosema Foundation
     url: https://www.enosema.org
     logo: https://www.enosema.org/logos/logo-text-green.svg
@@ -67,7 +70,7 @@ features:
   about: true
   search: true
   poweredBy:
-    title: "Glossarist"
+    message: "Glossarist"
     url: "https://glossarist.org"
 
 defaults:
